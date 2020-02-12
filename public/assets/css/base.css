@@ -1,0 +1,92 @@
+#logo_image_svg{
+    height: 70px;
+}
+
+.sidebar-item-active{
+    backgrond-color: #4a4a4a;
+}
+
+.breadcrumb_menu_active{
+    backgrond-color: #4a4a4a;
+}
+
+.sidebar-menu-dropdown
+{
+    position:relative;
+}
+
+.sidebar-report-dropdown {
+    position:relative;
+}
+
+.sidebar-report-dropdown-car-dropdown {
+    position:relative;
+}
+
+.sidebar-report-dropdown .sidebar-dropdown
+{
+    position: absolute;
+}
+.sidebar-report-dropdown-car-dropdown .sidebar-dropdown
+{
+    position: absolute;
+}
+
+
+
+
+.sidebar-menu-dropdown .sidebar-dropdown
+{
+    position: absolute;
+}
+
+
+.sidebar-menu-dropdown .sidebar-dropdown a
+{
+    display: block;
+}
+.sidebar-report-dropdown .sidebar-dropdown a
+{
+    display: block;
+}
+
+.sidebar-report-dropdown-car-dropdown .sidebar-dropdown a
+{
+    display: block;
+}
+
+#lc-panel-dropdown{
+    background: #DDDDDD;
+    display: block;
+    width: 150%;
+    z-index: 300;
+    padding:10px 0px;
+
+}
+#lc-panel-dropdown a, #report-panel-dropdown a, #report-panel-dropdown-car-dropdown a{
+    padding: 5px 20px;
+
+}
+
+
+#lc-panel-dropdown a:hover, #report-panel-dropdown a:hover, #report-panel-dropdown-car-dropdown a:hover{
+    background:#0c5460;
+    color:white;
+}
+
+#report-panel-dropdown{
+    background: #DDDDDD;
+    display: block;
+    width: 220%;
+    z-index: 300;
+    padding:10px 0px;
+
+}
+#report-panel-dropdown-car-dropdown{
+    background: #DDDDDD;
+    display: block;
+    width: 230%;
+    z-index: 300;
+    padding:10px 0px;
+
+}

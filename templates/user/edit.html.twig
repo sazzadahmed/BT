@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit User{% endblock %}
+{% block body %}
+    <button class="btn btn-info btn-lg"> <a href="{{ path('user_index') }}">Back to List</a></button>
+    <hr/>
+    <div class="col-md-8" margin-bottom>
+        <h3 style="display: inline">Entry Panel</h3>
+    </div>
+    {{ include('user/_form.html.twig') }}
+{% endblock %}
+

@@ -1,0 +1,97 @@
+
+<div class="col-md-2"></div>
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+<div class="row">
+    <div class="widget-box" style="width:90%">
+        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Set Wastage/Sold Quantity For Liquid Item</h5>
+        </div>
+        <div class="widget-content nopadding">
+            {{ form_start(form,{'attr':{'class':'form-horizontal','id':''}})  }}
+            <table border="0" cellspacing="5" cellpadding="5" width="100%">
+                <tbody>
+                <tr>
+{#                    <td>#}
+{#                        <span class="date-label"> {{ form_label(form.car, 'Car ', { 'label_attr': {'class': ''} }) }}</span>#}
+{#                        {{ form_widget(form.car,{'value':car?:'' }) }}#}
+{#                    </td>#}
+                    <td>
+                        <span class="date-label">{{ form_label(form.spareParts, 'Entry Type', { 'label_attr': {'class': ''} }) }}</span>
+                        {{ form_widget(form.spareParts,{'value':spareParts?:'' }) }}
+                    </td>
+                    <td>
+                        <span class="date-label">{{ form_label(form.statusType, 'Type', { 'label_attr': {'class': ''} }) }}</span>
+                        {{ form_widget(form.statusType,{'value':statusType?:'' }) }}
+                    </td>
+                    <td>
+                        <button class=" btn btn-success" style="margin-left:1%;">{{ button_label|default('Submit') }}</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+    {% if action %}
+        {% if statusType == '1' %}
+            <div class="wastage-sold-form-panel">
+                {{ form_start(form1,{'attr':{'class':'form-horizontal'}})  }}
+                <div class="control-group wastage-sold-ctl">
+                    <label class="control-label-wastage-sold required" for="car_chessis">Available Wastage :</label>
+                    <div class="wastage-sold-ctls">
+                        <i><span id="available-wastage-span"> {{availableQuantity|number_format}} </span> (Ltr)</i>
+                    </div>
+                </div>
+                <div class="control-group wastage-sold-ctl">
+                    {{ form_label(form1.wastageQuantity, 'Wastage Quantity :', { 'label_attr': {'class': 'control-label-wastage-sold required'} }) }}
+                    <div class="wastage-sold-ctls">
+                        {{ form_widget(form1.wastageQuantity) }} (Ltr)
+                        {{ form_widget(form1.spearsParts,{'value':spareParts?:'' }) }}
+                    </div>
+                </div>
+
+                <div class="control-group wastage-sold-ctl">
+                    <button class=" btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</button>
+                </div>
+                {{ form_end(form1) }}
+
+            </div>
+        {% else %}
+        <div class="wastage-sold-form-panel">
+            {{ form_start(form1,{'attr':{'class':'form-horizontal'}})  }}
+            <div class="control-group wastage-sold-ctl">
+                <label class="control-label-wastage-sold required" for="car_chessis">Available Wastage :</label>
+                <div class="wastage-sold-ctls">
+                    <i><span id="available-wastage-span"> {{availableQuantity|number_format}} </span> (Ltr)</i>
+                </div>
+            </div>
+            <div class="control-group wastage-sold-ctl">
+                {{ form_label(form1.soldQuantity, 'Sell Quantity :', { 'label_attr': {'class': 'control-label-wastage-sold required'} }) }}
+                <div class="wastage-sold-ctls">
+                    {{ form_widget(form1.soldQuantity) }} (Ltr)
+                    {{ form_widget(form1.spearsParts,{'value':spareParts?:'' }) }}
+                </div>
+            </div>
+            <div class="control-group wastage-sold-ctl">
+                {{ form_label(form1.soldPrice, 'Sell Price :', { 'label_attr': {'class': 'control-label-wastage-sold required'} }) }}
+                <div class="wastage-sold-ctls">
+                    {{ form_widget(form1.soldPrice) }} (BDT)
+                </div>
+            </div>
+
+            <div class="control-group wastage-sold-ctl">
+                <button class=" btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</button>
+            </div>
+            {{ form_end(form1) }}
+
+        </div>
+
+        {% endif %}
+    {% endif %}
+</div>
+

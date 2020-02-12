@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spears Parts List{% endblock %}
+
+{% block body %}
+    <a href="{{ path('spare_parts_new') }}" class="btn btn-success">Create Entry</a>
+
+    <div class="row">
+        <div class="widget-box" style="width:90%">
+            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>Car Panel</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered data-table display nowrap" id="list-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mileage</th>
+                        <th>CreateAt</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for spare_part in spare_parts %}
+                        <tr>
+
+                            <td>{{ spare_part.name }}</td>
+                            <td>{{ spare_part.mileage?'Yes':'No' }}</td>
+                            <td>{{ spare_part.createAt ? spare_part.createAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('spare_parts_edit', {'id': spare_part.id}) }}">Modify</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

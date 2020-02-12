@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transaction List{% endblock %}
+
+{% block body %}
+    <a href="{{ path('user_new') }}" class="btn btn-success">Create Entry</a>
+
+    <div class="row">
+        <div class="widget-box" style="width:90%">
+            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>User Panel</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered data-table display nowrap" id="transaction-list-table">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('user_edit', {'id': user.id}) }}">Modify</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

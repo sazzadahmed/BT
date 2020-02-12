@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EntryDetails{% endblock %}
+
+{% block body %}
+    <h1>EntryDetails</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entry_detail.id }}</td>
+            </tr>
+            <tr>
+                <th>StartMillage</th>
+                <td>{{ entry_detail.startMillage }}</td>
+            </tr>
+            <tr>
+                <th>EndMillage</th>
+                <td>{{ entry_detail.endMillage }}</td>
+            </tr>
+            <tr>
+                <th>IsTire</th>
+                <td>{{ entry_detail.isTire ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Qty</th>
+                <td>{{ entry_detail.qty }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ entry_detail.price }}</td>
+            </tr>
+            <tr>
+                <th>CreateAt</th>
+                <td>{{ entry_detail.createAt ? entry_detail.createAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdateAt</th>
+                <td>{{ entry_detail.updateAt ? entry_detail.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entry_detail.status }}</td>
+            </tr>
+            <tr>
+                <th>IsQuantityNumber</th>
+                <td>{{ entry_detail.isQuantityNumber ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>PartsDescription</th>
+                <td>{{ entry_detail.partsDescription }}</td>
+            </tr>
+            <tr>
+                <th>WastageDate</th>
+                <td>{{ entry_detail.wastageDate ? entry_detail.wastageDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SoldDate</th>
+                <td>{{ entry_detail.soldDate ? entry_detail.soldDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SoldPrice</th>
+                <td>{{ entry_detail.soldPrice }}</td>
+            </tr>
+            <tr>
+                <th>TirePosition</th>
+                <td>{{ entry_detail.tirePosition }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('entry_details_index') }}">back to list</a>
+
+    <a href="{{ path('entry_details_edit', {'id': entry_detail.id}) }}">edit</a>
+
+    {{ include('entry_details/_delete_form.html.twig') }}
+{% endblock %}

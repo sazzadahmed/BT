@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spears Parts List{% endblock %}
+
+{% block body %}
+    <a href="{{ path('entry_details_new') }}" class="btn btn-success">Create Entry</a>
+    <div class="col-md-2"></div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="widget-box" style="width:90%">
+            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>Spears Parts Details Panel</h5>
+            </div>
+            <div class="widget-content nopadding">
+                {{ form_start(form,{'attr':{'class':'form-horizontal','id':''}})  }}
+                <table border="0" cellspacing="5" cellpadding="5" width="100%">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span id="date-label-from" class="date-label">From:</span> {{ form_widget(form.findFromDate, { 'type':'text','value':findFromDate?: "now"|date("m/d/Y") }) }}
+                        </td>
+                        <td>
+                            <span id="date-label-to" class="date-label">To:</span> {{ form_widget(form.findToDate, { 'type':'text', 'value':findToDate?: "now"|date("m/d/Y") }) }}
+                        </td>
+                        <td>
+                            <span class="date-label"> {{ form_label(form.car, 'Car ', { 'label_attr': {'class': ''} }) }}</span>
+                            {{ form_widget(form.car,{'value':car?:'' }) }}
+                        </td>
+                        <td>
+                            <span class="date-label">{{ form_label(form.spareParts, 'Entry Type', { 'label_attr': {'class': ''} }) }}</span>
+                            {{ form_widget(form.spareParts,{'value':spareParts?:'' }) }}
+                        </td>
+                        <td>
+                            <span class="date-label">{{ form_label(form.statusType, 'Type', { 'label_attr': {'class': ''} }) }}</span>
+                            {{ form_widget(form.statusType,{'value':statusType?:'' }) }}
+                        </td>
+                        <td>
+                            <button class=" btn btn-success" style="margin-left:1%;">{{ button_label|default('Submit') }}</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                {{ form_end(form) }}
+                <table class="table table-bordered data-table display nowrap" id="list-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Car Name</th>
+                        <th>Car Number</th>
+                        <th>Spears Parts</th>
+                        <th>Start Millage</th>
+                        <th>End Millage</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Parts Description</th>
+                        <th>Wastage Date</th>
+                        <th>Sold Date</th>
+                        <th>Sold Price</th>
+                        <th>Tire Position</th>
+                        <th colspan="3" style="min-width: 211px;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entry_detail in entry_details %}
+                        <tr>
+                            <td>{{ entry_detail.create_at ? entry_detail.create_at|date('Y-m-d H:i:s') : '' }}</td>
+
+                            <td>{{ entry_detail.name }}</td>
+                            <td>{{ entry_detail.chessis }}</td>
+                            <td>{{ entry_detail.spears_name }}</td>
+                            <td>{{ entry_detail.start_millage }}</td>
+                            <td>{{ entry_detail.end_millage }}</td>
+                            <td>{{ entry_detail.qty }}</td>
+                            <td>{{ entry_detail.price }}</td>
+                            <td>
+                                {% if entry_detail.status =='3' %}
+                                    Sold
+                                {% elseif entry_detail.status =='2' %}
+                                    Wastage
+                                {% else %}
+                                    Running
+                                {% endif %}
+                            </td>
+                            <td>{{ entry_detail.parts_description }}</td>
+                            <td>{{ entry_detail.wastage_date ? entry_detail.wastage_date|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ entry_detail.sold_date ? entry_detail.sold_date|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ entry_detail.sold_price }}</td>
+                            <td>
+                                {% if entry_detail.tire_position%}
+                                    {% if entry_detail.tire_position =='1' %}
+                                        Front Left Wheel
+                                    {% elseif entry_detail.tire_position =='2' %}
+                                        Front Right Wheel
+                                    {% elseif entry_detail.tire_position =='3' %}
+                                        Back Left 1st Wheel
+                                    {% elseif entry_detail.tire_position =='4' %}
+                                        Back Left 2nd Wheel
+                                    {% elseif entry_detail.tire_position =='5' %}
+                                        Back Right 1st Wheel
+                                    {% elseif entry_detail.tire_position =='6' %}
+                                        Back Right 2nd Wheel
+                                    {% else %}
+                                        Free Wheel
+                                    {% endif %}
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                    {% if statusType =='3' %}
+                                        --
+                                    {% elseif statusType =='2' %}
+                                        {% if  entry_detail.is_quantity_number == '1' %}
+                                            <a href="javascript:void(0);" onclick="makeWastage('{{ entry_detail.id }}', '{{ path('make_wastage', {'id': entry_detail.id}) }}','2')" class="btn btn-info">Sold</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a class="btn btn-success" href="{{ path('entry_details_edit', {'id': entry_detail.id}) }}" style="float: left; margin-right: 10px">Modify</a>
+{#                                        <a class="btn btn-info" href="{{ path('entry_details_edit', {'id': entry_detail.id}) }}">Wastage</a>#}
+                                        <a href="javascript:void(0);" onclick="makeWastage('{{ entry_detail.id }}', '{{ path('make_wastage', {'id': entry_detail.id}) }}','1')" class="btn btn-info">Wastage</a>
+                                        <a  href="{{ path('delete_entry_detail', {'id': entry_detail.id}) }}" class="btn btn-info confirmationDelete">Delete</a>
+
+                                    {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="16">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,141 @@
+/*
+ Custom Style
+*/
+button.btn-info a{
+    color: #fff;
+}
+h1.custom-h1{
+    color: #c82333;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+}
+.modal{
+    opacity: 1;
+}
+.modal{
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 10%;
+    left: 39.48%;
+    width: 50%;
+}
+.modal-body{
+    max-height: 100%;
+}
+.container-fluid .row-fluid .modal.fade.show{
+    padding-right: 0 !important;
+}
+.modal-header .close span{
+    color: red;
+    font-size: 2.0rem;
+}
+.modal-dialog{
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+.bank_and_account{
+    display: none;
+}
+span#date-label-from,input#datepicker_from,span#date-label-to,input#datepicker_to{
+    float: left;
+    margin-right: 1%;
+}
+select#cash_filter,select#income_expense{
+    float: right;
+    margin-left: 1%;
+}
+#receivable-amount,#due-amount{
+    display: none;
+}
+.margin-bottom{
+    margin-bottom: 1rem;
+}
+.dt-print-view tr td{
+   white-space: normal !important;
+}
+.account-payable-receivable .text-wrap{
+    white-space:normal;
+}
+.account-payable-receivable .width-200{
+    width:20rem;
+}
+.cash-book .child-table{
+    width: 100%;
+}
+.btn-success{
+    font-size: 0.85em;
+}
+.modal.fade{
+    top:10%;
+}
+.bootbox{
+    max-height: 30vh;
+}
+.transaction-edit{
+    max-height: 58vh;
+}
+.print-btn-margin{
+    margin: 10px 0 20px 10px;
+}
+.margin-top-20px{
+    margin-top: 20px;
+}
+.transaction_list-grid.dataTable.nowrap th, .transaction_list-grid.dataTable.nowrap td{
+    white-space: normal;
+}
+
+.bootbox-cancel, .bootbox-cancel:hover, .bootbox-cancel:active, .bootbox-cancel:focus {
+    color: #fff;
+    background-color: #da542e;
+    border-color: #da542e;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.bootbox-accept,.bootbox-accept:hover, .bootbox-accept:active, .bootbox-accept:focus {
+    color: #fff;
+    background-color: #28b779;
+    border-color: #28b779;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.bootbox-confirm{
+    max-height: 13vh;
+}
+.bootbox.modal{
+    max-height: 20vh;
+}
+.dataTable.nowrap#list-table th, .dataTable.nowrap#list-table td{
+    white-space: initial;
+}
+.make-wastage{
+    max-height: 32vh;
+}
+.wastage-msg{
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.wastage-sold-form-panel{
+    width: 90%;
+}
+.wastage-sold-form-panel .form-horizontal .control-label{
+    width: 30%;
+}
+.wastage-sold-ctl{
+    margin-left: 21%;
+    margin-top: 20px;
+}
+.control-label-wastage-sold{
+    float: left;
+    margin-right: 20px;
+}
+.wastage-sold-ctls{
+    float: left;
+}
+.wastage-sold-ctls input[type="text"]{
+    width: 200px;
+}

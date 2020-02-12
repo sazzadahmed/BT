@@ -1,0 +1,36 @@
+
+
+<div class="col-md-2"></div>
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+<div class="col-md-8" >
+    {{ form_start(form,{'attr':{'class':'form-horizontal'}})  }}
+    <div class="control-group">
+        {{ form_label(form.email, 'User Email', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.email) }}
+        </div>
+    </div>
+    <div class="control-group">
+        {{ form_label(form.password.first, 'Password', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.password.first) }}
+        </div>
+    </div>
+    <div class="control-group">
+        {{ form_label(form.password.second, 'Re Type Password', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.password.second) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <button class=" btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</button>
+        {#        <a href="javascript:void(0);" onclick="validateTransactionForm();" class="delete-transaction btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</a>#}
+    </div>
+    {{ form_end(form) }}
+</div>
+

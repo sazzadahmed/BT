@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spears Parts List{% endblock %}
+
+{% block body %}
+    <a href="{{ path('liquid_parts_details_new') }}" class="btn btn-success">Create Entry</a>
+
+    <div class="col-md-2"></div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="widget-box" style="width:90%">
+            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>Liquid Item Panel</h5>
+            </div>
+            <div class="widget-content nopadding">
+                {{ form_start(form,{'attr':{'class':'form-horizontal','id':''}})  }}
+                <table border="0" cellspacing="5" cellpadding="5" width="100%">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span id="date-label-from" class="date-label">From:</span> {{ form_widget(form.findFromDate, { 'type':'text','value':findFromDate?: "now"|date_modify("-1 day")|date("m/d/Y") }) }}
+                        </td>
+                        <td>
+                            <span id="date-label-to" class="date-label">To:</span> {{ form_widget(form.findToDate, { 'type':'text', 'value':findToDate?: "now"|date("m/d/Y") }) }}
+                        </td>
+                        <td>
+                            <span class="date-label">{{ form_label(form.spareParts, 'Entry Type', { 'label_attr': {'class': ''} }) }}</span>
+                            {{ form_widget(form.spareParts,{'value':spareParts?:'' }) }}
+                        </td>
+                        <td>
+                            <span class="date-label">{{ form_label(form.statusType, 'Type', { 'label_attr': {'class': ''} }) }}</span>
+                            {{ form_widget(form.statusType,{'value':statusType?:'' }) }}
+                        </td>
+                        <td>
+                            <button class=" btn btn-success" style="margin-left:1%;">{{ button_label|default('Submit') }}</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                {{ form_end(form) }}
+                <table class="table table-bordered data-table display nowrap" id="list-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Spears Parts</th>
+                        <th>Wastage Quantity</th>
+                        <th>Sold Quantity</th>
+                        <th>Available Quantity</th>
+                        <th>Sold Price (BDT)</th>
+                        <th>Total Sold Price</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set availableWastage = 0 %}
+                    {% set totalSoldPrice =0 %}
+                    {% for liquid_parts_detail in liquid_parts_details %}
+                        <tr>
+                            <td>{{ liquid_parts_detail.create_at ? liquid_parts_detail.create_at|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ liquid_parts_detail.spears_name }}</td>
+                            <td>{{ (liquid_parts_detail.wastage_quantity!="0")? liquid_parts_detail.wastage_quantity :"--" }}</td>
+                            <td>{{ (liquid_parts_detail.sold_quantity!="0")?liquid_parts_detail.sold_quantity : "--" }}</td>
+                            <td>
+                                {% if(liquid_parts_detail.wastage_quantity!="0") %}
+                                    {% set availableWastage = liquid_parts_detail.wastage_quantity + availableWastage %}
+                                {% endif %}
+                                {% if(liquid_parts_detail.sold_quantity!="0") %}
+                                    {% if(availableWastage>liquid_parts_detail.sold_quantity) %}
+                                        {% set availableWastage = availableWastage - liquid_parts_detail.sold_quantity  %}
+                                     {% else %}
+                                         {% set availableWastage = liquid_parts_detail.sold_quantity - availableWastage  %}
+                                     {% endif %}
+                                {% endif %}
+                                {{ availableWastage }}
+                            </td>
+                            <td>{{ (liquid_parts_detail.sold_price!="0")?liquid_parts_detail.sold_price : "--" }}</td>
+                            <td>
+                                {% if(liquid_parts_detail.sold_price!="0") %}
+                                    {% set totalSoldPrice = totalSoldPrice + liquid_parts_detail.sold_price %}
+                                {% endif %}
+                                {{ (totalSoldPrice!="0"?totalSoldPrice:"--") }}
+                            </td>
+                            <td>
+                                {#                            <a href="{{ path('liquid_parts_details_show', {'id': liquid_parts_detail.id}) }}">show</a>#}
+                                <a class="btn btn-success" href="javascript:void(0);" onclick="makeWastage('{{ liquid_parts_detail.id }}', '{{ path('modify_liquid_item', {'id': liquid_parts_detail.id}) }}','2')">Modify</a>
+                                <a href="{{ path('liquid_wastage_delete', {'id': liquid_parts_detail.id}) }}" class="btn btn-danger confirmationDelete">Delete</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">No records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

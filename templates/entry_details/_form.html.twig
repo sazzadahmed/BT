@@ -1,0 +1,98 @@
+
+<div class="row-fluid">
+    <div class="widget-box">
+
+        <div class="col-md-8">
+            {{ form_start(form,{'attr':{'style':'padding:23px'}}) }}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="control-group row" >
+                        <div class="col-md-2">
+                            {{ form_label(form.car, 'Car') }}
+                        </div>
+                        <div class="controls col-md-8">
+                            {{ form_widget(form.car) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="control-group row" >
+                        <div class="col-md-4">
+                            {{ form_label(form.spareParts, 'Spare Part') }}
+                        </div>
+                        <div class="controls col-md-8">
+                            {{ form_widget(form.spareParts) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="control-group row" >
+                        <div class="controls col-md-2">
+                            {{ form_label(form.qty, 'Quantity') }}
+                        </div>
+                        <div class="col-md-8">
+                            {{ form_widget(form.qty) }}
+                        </div>
+                        <div class="col-md-1">
+                            <span id ="quantity_L_Particle" style="font-size: 1.1em; display: none;">(Ltr)</span>
+                        </div>
+                    </div>
+                </div>
+<div class="col-md-12" style="border:1px solid #DDDDDD">
+    <div class="row">
+                <div class="col-md-3">
+                    <div class="control-group row" >
+                        <div class="controls col-md-12">
+                            {{ form_label(form.price, 'Price') }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_widget(form.price) }}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3" style="display: none" id="tire_control_panel">
+                    <div class="control-group row" >
+                        <div class="controls col-md-12">
+                            {{ form_label(form.tirePosition, 'Tire Position') }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_widget(form.tirePosition) }}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="control-group row" >
+                        <div class="controls col-md-12">
+                            {{ form_label(form.partsDescription, 'Description') }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_widget(form.partsDescription) }}
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+                <div class="col-md-12" id ="add_more_panel">
+
+{#new code will be inserted here#}
+
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <button class="btn btn-primary" id="add_more_spare_part" style="display: none">Add More</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

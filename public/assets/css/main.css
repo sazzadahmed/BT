@@ -1,0 +1,9 @@
+h1.custom-h1{
+    color: #c82333;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+}
+.modal{
+    opacity: 1;
+}

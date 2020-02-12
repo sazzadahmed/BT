@@ -1,0 +1,26 @@
+
+
+
+<div class="page-breadcrumb">
+    <div class="row" style="background:#0c5460;">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title"></h4>
+            {% set splitedUrl = app.request.uri|split('/') %}
+            <nav class="navbar navbar-inverse" >
+{#                <div class="container-fluid">#}
+{#                    <ul class="nav navbar-nav">#}
+{#                        <li class="sidebar-item">Item1</li>#}
+{#                        <li class="sidebar-item">Item2</li>#}
+{#                    </ul>#}
+{#                </div>#}
+            </nav>
+            <div class="ml-auto text-right" >
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li> <a href="{{ path('app_logout') }}" style ="padding: 0px 10px 0px 15px;">Log Out</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

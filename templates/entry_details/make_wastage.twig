@@ -1,0 +1,38 @@
+
+<div class="col-md-2"></div>
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+<div class="row-fluid">
+    {{ form_start(form,{'attr':{'class':'form-horizontal','id':''}})  }}
+
+    {% set display = 'display: none' %}
+    {% set msg = 1 %}
+    {% if isMillage %}
+        {% set display = 'display: block' %}
+        {% set msg = 0 %}
+    {% endif %}
+    {% if msg %}
+        <div class="btn-danger wastage-msg"> Are You Want to make this product Wastage ? </div>
+    {% endif %}
+
+    <div class="control-group" style="{{ display }}">
+        {{ form_label(form.endMillage, 'End Millage', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {% if isMillage %}
+            {{ form_widget(form.endMillage,{'attr': {'class': 'span4','required':'required' } }) }}
+                {% else %}
+                    {{ form_widget(form.endMillage,{'attr': {'class': 'span4' } }) }}
+            {% endif %}
+            {{ form_widget(form.entryDetails, { 'value':entryDetailsId }) }}
+            {{ form_widget(form.actionStatus, { 'value':actionStatus }) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <button class=" btn btn-success" style="margin-left:200px;">{{ button_label|default('Make Wastage') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+

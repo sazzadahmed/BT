@@ -1,0 +1,42 @@
+
+<div class="col-md-2"></div>
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+<div class="col-md-8" >
+    {{ form_start(form,{'attr':{'class':'form-horizontal'}})  }}
+    <div class="control-group">
+        {{ form_label(form.name, 'Parts Name', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.name) }}
+        </div>
+    </div>
+    <div class="control-group">
+        {{ form_label(form.mileage, 'Is Millages', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.mileage) }}
+        </div>
+    </div>
+    <div class="control-group">
+        {{ form_label(form.isTire, 'Is Tires', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.isTire) }}
+        </div>
+    </div>
+    <div class="control-group">
+        {{ form_label(form.NumOrQty, 'Solid Or Liquid', { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="controls">
+            {{ form_widget(form.NumOrQty) }}
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <button class=" btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</button>
+        {#        <a href="javascript:void(0);" onclick="validateTransactionForm();" class="delete-transaction btn btn-success" style="margin-left:200px;">{{ button_label|default('Save') }}</a>#}
+    </div>
+    {{ form_end(form) }}
+</div>
+

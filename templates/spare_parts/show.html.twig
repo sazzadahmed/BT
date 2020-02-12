@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SpareParts{% endblock %}
+
+{% block body %}
+    <h1>SpareParts</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ spare_part.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ spare_part.name }}</td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>{{ spare_part.mileage }}</td>
+            </tr>
+            <tr>
+                <th>IsDeleted</th>
+                <td>{{ spare_part.isDeleted ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsTire</th>
+                <td>{{ spare_part.isTire ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>NumOrQty</th>
+                <td>{{ spare_part.NumOrQty }}</td>
+            </tr>
+            <tr>
+                <th>CreateAt</th>
+                <td>{{ spare_part.createAt ? spare_part.createAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdateAt</th>
+                <td>{{ spare_part.updateAt ? spare_part.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('spare_parts_index') }}">back to list</a>
+
+    <a href="{{ path('spare_parts_edit', {'id': spare_part.id}) }}">edit</a>
+
+    {{ include('spare_parts/_delete_form.html.twig') }}
+{% endblock %}
